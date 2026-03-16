@@ -182,3 +182,17 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role   mast
 127.0.0.1           47          91   1    0.07    0.02     0.00 cdfhilmrstw *      ip-172-31-7-140
 
 ```
+
+### creating index 
+
+```
+curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic:Redhat@12345 -X PUT https://localhost:9200/myindex \
+-H "Content-Type: application/json" \
+-d '{
+    "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0
+    }
+}'
+
+```
