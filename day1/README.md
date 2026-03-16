@@ -198,3 +198,50 @@ CPython version: 3.12.3
 OpenSSL version: OpenSSL 3.0.13 30 Jan 2024
 
 ```
+
+### finally running elastic cluster using docker compose 
+
+```
+131  docker-compose down 
+  132  docker-compose up -d
+  133  docker-compose ps
+  134  history 
+root@ip-172-31-7-140:~/elastic-cluster# docker-compose ps
+Name              Command               State                         Ports                       
+--------------------------------------------------------------------------------------------------
+es01   /bin/tini -- /usr/local/bi ...   Up      0.0.0.0:9200->9200/tcp,:::9200->9200/tcp, 9300/tcp
+es02   /bin/tini -- /usr/local/bi ...   Up      9200/tcp, 9300/tcp                                
+es03   /bin/tini -- /usr/local/bi ...   Up      9200/tcp, 9300/tcp                                
+root@ip-172-31-7-140:~/elastic-cluster# 
+root@ip-172-31-7-140:~/elastic-cluster# docker-compose ps
+Name              Command               State                         Ports                       
+--------------------------------------------------------------------------------------------------
+es01   /bin/tini -- /usr/local/bi ...   Up      0.0.0.0:9200->9200/tcp,:::9200->9200/tcp, 9300/tcp
+es02   /bin/tini -- /usr/local/bi ...   Up      9200/tcp, 9300/tcp                                
+es03   /bin/tini -- /usr/local/bi ...   Up      9200/tcp, 9300/tcp                                
+root@ip-172-31-7-140:~/elastic-cluster# 
+root@ip-172-31-7-140:~/elastic-cluster# curl http://localhost:9200/_cluster/health?pretty 
+{
+  "cluster_name" : "demo-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 3,
+  "number_of_data_nodes" : 3,
+  "active_primary_shards" : 0,
+  "active_shards" : 0,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+root@ip-172-31-7-140:~/elastic-cluster# curl http://localhost:9200/_cat/nodes?v 
+ip         heap.percent ram.percent cpu load_1m load_5m load_15m node.role   master name
+172.18.0.4           27          96  34    2.34    1.37     0.65 cdfhilmrstw -      es02
+172.18.0.2           38          96  41    2.34    1.37     0.65 cdfhilmrstw *      es03
+172.18.0.3           29          96  38    2.34    1.37     0.65 cdfhilmrstw -      es01
+
+```
