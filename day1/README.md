@@ -38,3 +38,6 @@ This took hours for a single issue. Now multiply this by hundreds of servers and
 
 <img src="elk1.png">
 
+### info about Elasticsearch connect
+
+<img src="elk2.png">
