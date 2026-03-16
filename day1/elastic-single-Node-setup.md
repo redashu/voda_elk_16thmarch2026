@@ -220,3 +220,16 @@ curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic:Redhat@12345 -X PU
 | **store.size** | 227b | Total disk space (includes metadata, segments, translog). |
 | **pri.store.size** | 227b | Primary shard disk usage only. |
 | **dataset.size** | 227b | Actual data size without storage overhead. |
+
+
+## Inserting docs in index 
+
+```
+elk-curl  -X POST https://localhost:9200/ashu-data/_doc/1 -H "Content-Type: application/json" \
+-d '{
+  "user": "ashu",
+  "action": "login",
+  "status": "failed"
+}'
+
+===>
