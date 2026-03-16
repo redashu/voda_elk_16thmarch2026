@@ -62,3 +62,57 @@ systemctl status elasticsearch
 #         CPU: 55.094s
 #      CGroup: /system.slice/elasticsearch.service
 ```
+
+## using curl to interact with elasticsearch 
+
+```
+url  --cacert  certs/http_ca.crt   -u elastic  https://localhost:9200 
+Enter host password for user 'elastic':
+{
+  "name" : "ip-172-31-7-140",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "UJuS29qsQFOsMkjZFR670w",
+  "version" : {
+    "number" : "8.19.12",
+    "build_flavor" : "default",
+    "build_type" : "deb",
+    "build_hash" : "840cd2a58b052d1632219ee0b8dcc0f364226287",
+    "build_date" : "2026-02-23T23:08:40.713020893Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.12.2",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+```
+### some more tools for advanced administration and troubleshooting 
+
+```
+ls /usr/share/elasticsearch/
+NOTICE.txt  README.asciidoc  bin  jdk  lib  modules  plugins
+root@ip-172-31-7-140:/etc/elasticsearch# ls /usr/share/elasticsearch/bin/
+elasticsearch                          elasticsearch-env            elasticsearch-reconfigure-node  elasticsearch-sql-cli
+elasticsearch-certgen                  elasticsearch-env-from-file  elasticsearch-reset-password    elasticsearch-sql-cli-8.19.12.jar
+elasticsearch-certutil                 elasticsearch-geoip          elasticsearch-saml-metadata     elasticsearch-syskeygen
+elasticsearch-cli                      elasticsearch-keystore       elasticsearch-service-tokens    elasticsearch-users
+elasticsearch-create-enrollment-token  elasticsearch-node           elasticsearch-setup-passwords   systemd-entrypoint
+elasticsearch-croneval                 elasticsearch-plugin         elasticsearch-shard
+
+```
+
+### resetting password of elastic user 
+
+```
+/usr/share/elasticsearch/bin/elasticsearch-reset-password  -u elastic -i 
+This tool will reset the password of the [elastic] user.
+You will be prompted to enter the password.
+Please confirm that you would like to continue [y/N]y
+
+
+Enter password for [elastic]: 
+Re-enter password for [elastic]: 
+Password for the [elastic] user successfully reset.
+
+```
