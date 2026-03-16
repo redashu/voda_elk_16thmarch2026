@@ -31,3 +31,10 @@ This took hours for a single issue. Now multiply this by hundreds of servers and
 - **No search capability**: Grep is primitive. Can't search across servers.
 - **No correlation**: Connecting an order ID from MySQL to a log entry meant manual work
 - **Scale**: Modern systems generate gigabytes of logs daily. Traditional tools couldn't handle it
+
+
+### Solution using ELK stack 
+### E--> elasticsearch
+
+<img src="elk1.png">
+
