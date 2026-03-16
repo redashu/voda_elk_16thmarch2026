@@ -84,3 +84,81 @@ Server: Docker Engine - Community
   GitCommit:        de40ad0
 
 ```
+
+### setup elasticsearch single node 
+
+```
+---> pulling elastic image officially 
+
+docker pull docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+
+--> verify image pull
+
+ docker images
+                                                                                                                           i Info →   U  In Use
+IMAGE                                                  ID             DISK USAGE   CONTENT SIZE   EXTRA
+docker.elastic.co/elasticsearch/elasticsearch:8.11.0   4cd9ce4ccb04       2.16GB          740MB        
+root@ip-172-31-7-140:~# 
+
+--===> creating elastic instance
+
+
+docker run -d \
+    --name elasticsearch \
+    -p 9200:9200 \
+    -p 9300:9300 \
+    -e "discovery.type=single-node" \
+    -e "xpack.security.enabled=false" \
+    docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+
+
+===> verify instances 
+
+docker ps
+CONTAINER ID   IMAGE                                                  COMMAND                  CREATED         STATUS         PORTS                                                                                      NAMES
+eb15aead77b5   docker.elastic.co/elasticsearch/elasticsearch:8.11.0   "/bin/tini -- /usr/l…"   3 seconds ago   Up 2 seconds   0.0.0.0:9200->9200/tcp, [::]:9200->9200/tcp, 0.0.0.0:9300->9300/tcp, [::]:9300->9300/tcp   elasticsearch
+
+
+```
+
+### checking connection 
+
+```
+root@ip-172-31-7-140:~# curl http://localhost:9200
+{
+  "name" : "eb15aead77b5",
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "SSDbHLrqQJ6nxERdY2vctQ",
+  "version" : {
+    "number" : "8.11.0",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "d9ec3fa628c7b0ba3d25692e277ba26814820b20",
+    "build_date" : "2023-11-04T10:04:57.184859352Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.8.0",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+root@ip-172-31-7-140:~# curl http://localhost:9200/_cluster/health?pretty
+{
+  "cluster_name" : "docker-cluster",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 0,
+  "active_shards" : 0,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+}
+
+```
