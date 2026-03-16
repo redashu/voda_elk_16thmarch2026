@@ -196,3 +196,27 @@ curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic:Redhat@12345 -X PU
 }'
 
 ```
+
+### listing index 
+
+```
+ elk-curl  -X GET https://localhost:9200/_cat/indices?v
+```
+
+### understanding output of  list index 
+
+### Detailed Column Explanation
+
+| Column | Value | Explanation |
+| --- | --- | --- |
+| **health** | green | All shards working properly. Green = Primary and replica shards allocated (best state). Yellow = Primary allocated, replicas missing. Red = Primary shards unallocated. |
+| **status** | open | Index is open and available for search/indexing. |
+| **index** | myindex | Index name (letters, numbers, underscores, hyphens allowed). |
+| **uuid** | cWYa5sIETp6JP1XmwNf9Qg | Unique identifier for tracking in logs/debugging. |
+| **pri** | 1 | Number of primary shards (cannot be changed after creation). |
+| **rep** | 0 | Replica shards per primary (0 = no copies, risky for production). |
+| **docs.count** | 0 | Number of documents (empty index). |
+| **docs.deleted** | 0 | Deleted documents (marked for removal during merges). |
+| **store.size** | 227b | Total disk space (includes metadata, segments, translog). |
+| **pri.store.size** | 227b | Primary shard disk usage only. |
+| **dataset.size** | 227b | Actual data size without storage overhead. |
