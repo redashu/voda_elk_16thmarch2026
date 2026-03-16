@@ -116,3 +116,19 @@ Re-enter password for [elastic]:
 Password for the [elastic] user successfully reset.
 
 ```
+
+## CUrl to interact with cluster 
+
+```
+ curl  --cacert  /etc/elasticsearch/certs/http_ca.crt   -u elastic:Redhat@12345 https://localhost:9200
+
+```
+### using linux alias to check 
+
+```
+alias elk-curl='curl  --cacert  /etc/elasticsearch/certs/http_ca.crt   -u elastic:Redhat@12345'
+
+===>
+elk-curl  https://localhost:9200/_cluster/health?pretty 
+
+```
