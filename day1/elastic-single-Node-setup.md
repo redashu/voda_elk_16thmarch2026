@@ -132,3 +132,53 @@ alias elk-curl='curl  --cacert  /etc/elasticsearch/certs/http_ca.crt   -u elasti
 elk-curl  https://localhost:9200/_cluster/health?pretty 
 
 ```
+### checking _cat endpoint of elasticsearch 
+
+```
+lk-curl  https://localhost:9200/_cat/
+=^.^=
+/_cat/allocation
+/_cat/shards
+/_cat/shards/{index}
+/_cat/master
+/_cat/nodes
+/_cat/tasks
+/_cat/indices
+/_cat/indices/{index}
+/_cat/segments
+/_cat/segments/{index}
+/_cat/count
+/_cat/count/{index}
+/_cat/recovery
+/_cat/recovery/{index}
+/_cat/health
+/_cat/pending_tasks
+/_cat/aliases
+/_cat/aliases/{alias}
+/_cat/thread_pool
+/_cat/thread_pool/{thread_pools}
+/_cat/plugins
+/_cat/fielddata
+/_cat/fielddata/{fields}
+/_cat/nodeattrs
+/_cat/repositories
+/_cat/snapshots/{repository}
+/_cat/templates
+/_cat/component_templates
+/_cat/ml/anomaly_detectors
+/_cat/ml/anomaly_detectors/{job_id}
+/_cat/ml/datafeeds
+/_cat/ml/datafeeds/{datafeed_id}
+/_cat/ml/trained_models
+/_cat/ml/trained_models/{model_id}
+/_cat/ml/data_frame/analytics
+/_cat/ml/data_frame/analytics/{id}
+/_cat/transforms
+/_cat/transforms/{transform_id}
+root@ip-172-31-7-140:/etc/elasticsearch# elk-curl  https://localhost:9200/_cat/nodes
+127.0.0.1 47 91 0 0.00 0.00 0.00 cdfhilmrstw * ip-172-31-7-140
+root@ip-172-31-7-140:/etc/elasticsearch# elk-curl  https://localhost:9200/_cat/nodes?v
+ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role   master name
+127.0.0.1           47          91   1    0.07    0.02     0.00 cdfhilmrstw *      ip-172-31-7-140
+
+```
