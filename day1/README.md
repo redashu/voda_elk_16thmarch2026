@@ -162,3 +162,22 @@ root@ip-172-31-7-140:~# curl http://localhost:9200/_cluster/health?pretty
 }
 
 ```
+
+### docker history for elasticsearch 
+
+```
+ 92  docker run -d     --name elasticsearch     -p 9200:9200     -p 9300:9300     -e "discovery.type=single-node"     -e "xpack.security.enabled=false"     docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+   93  docker ps
+   94  docker logs elasticsearch
+   95  history 
+   96  curl http://localhost:9200
+   97  curl http://localhost:9200/_cluster/health?pretty
+   98  history 
+   99  docker ps
+  100  docker stop elasticsearch
+  101  docker ps 
+  102  docker ps -a
+  103  docker start elasticsearch
+  104  docker ps 
+  105  docker stop elasticsearch
+```
