@@ -81,3 +81,14 @@ oot@ip-172-31-7-140:/etc/filebeat/modules.d# cat apache.yml
 ```
 
 <img src="fileb1.png">
+
+```
+200  cd /etc/filebeat/
+  201  ls
+  202  vim filebeat.yml 
+  203  grep -in elastic filebeat.yml 
+  204  vim +162 filebeat.yml 
+  205  ls -l /etc/elasticsearch/certs/http_ca.crt 
+  206  vim +162 filebeat.yml 
+
+```
