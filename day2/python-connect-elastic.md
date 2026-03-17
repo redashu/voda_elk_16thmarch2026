@@ -60,3 +60,28 @@ print(client.info())
 
 ===> python test.py 
 ```
+
+### creating index using python 
+
+```
+from elasticsearch import Elasticsearch
+
+username = 'elastic'
+password = 'Redhat@12345' # Value you set in the environment variable
+
+client = Elasticsearch(
+    "https://localhost:9200",
+     ca_certs="/etc/elasticsearch/certs/http_ca.crt",
+     basic_auth=(username, password)
+     #verify_certs=False
+)
+
+print(client.info())
+
+# creating index 
+i_name = "ashu-python"
+
+client.indices.create(index=i_name)
+print(f"Index '{i_name}' has been created")
+
+```
