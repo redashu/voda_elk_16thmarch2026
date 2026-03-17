@@ -52,3 +52,11 @@ output {
   }
 }
 ```
+
+### configure filebeat output section 
+
+```
+ilebeat  test config  -c /etc/filebeat/filebeat.yml 
+  363  grep -in output /etc/filebeat/filebeat.yml 
+  364  vim /etc/filebeat/filebeat.yml  +96
+```
