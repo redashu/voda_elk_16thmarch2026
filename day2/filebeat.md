@@ -92,3 +92,21 @@ oot@ip-172-31-7-140:/etc/filebeat/modules.d# cat apache.yml
   206  vim +162 filebeat.yml 
 
 ```
+
+### more details 
+
+```
+vim +94  filebeat.yml
+
+setup.ilm.enabled: false
+setup.template.name: "apache-logs"
+setup.template.pattern: "apache-logs-*"
+output.elasticsearch.index: "apache-logs-%{+yyyy.MM.dd}"
+
+
+====> run command 
+sudo filebeat setup --index-management
+sudo systemctl start filebeat
+sudo systemctl status filebeat
+
+```
