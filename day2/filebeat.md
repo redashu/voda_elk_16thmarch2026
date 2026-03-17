@@ -29,3 +29,48 @@ auditd.yml.disabled       envoyproxy.yml.disabled        kibana.yml.disabled    
 aws.yml.disabled          fortinet.yml.disabled       
 
 ```
+
+### listing and enabling module to read logs by filebeat 
+
+```
+root@ip-172-31-7-140:/etc/filebeat# filebeat  modules enable apache
+Enabled apache
+root@ip-172-31-7-140:/etc/filebeat# filebeat  modules list
+Enabled:
+apache
+
+Disabled:
+activemq
+auditd
+aws
+awsfargate
+azure
+
+```
+### /etc/filebeat/modules.d/apache.yml 
+
+```
+oot@ip-172-31-7-140:/etc/filebeat/modules.d# cat apache.yml 
+# Module: apache
+# Docs: https://www.elastic.co/guide/en/beats/filebeat/8.19/filebeat-module-apache.html
+
+- module: apache
+  # Access logs
+  access:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths:
+     - /var/log/apache2/access.log
+
+  # Error logs
+  error:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths:
+     - /var/log/apache2/error.log
+
+```
