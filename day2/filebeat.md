@@ -110,3 +110,22 @@ sudo systemctl start filebeat
 sudo systemctl status filebeat
 
 ```
+
+
+### searching data in elasticsearch given by filebeat 
+
+```
+226  elk-curl  -X GET https://localhost:9200/.ds-apache*/_count?v
+  227  elk-curl  -X GET https://localhost:9200/.ds-apache*/_count?pretty 
+  228  elk-curl  -X GET https://localhost:9200/.ds-apache*/_search?pretty 
+  229  history 
+  230  elk-curl  -X GET https://localhost:9200/.ds-apache*/_search?size=1&pretty 
+  231  elk-curl  -X GET "https://localhost:9200/.ds-apache*/_search?size=1&pretty" 
+  232  history 
+root@ip-172-31-7-140:/etc/filebeat# !225
+elk-curl  -X GET https://localhost:9200/_cat/indices?v
+health status index                                        uuid                   pri rep docs.count docs.deleted store.size pri.store.size dataset.size
+yellow open   .ds-apache-logs-2026.03.17-2026.03.17-000001 34Kb3qlEQYWmPyoWd3j3gQ   1   1         49            0    100.8kb        100.8kb      100.8kb
+yellow open   ashu-data                                    57DLlBnER86TGWQbtqh4xQ   1   1          1            0        6kb            6kb          6kb
+
+```
