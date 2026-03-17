@@ -74,3 +74,10 @@ oot@ip-172-31-7-140:/etc/filebeat/modules.d# cat apache.yml
      - /var/log/apache2/error.log
 
 ```
+
+### configure elasticsearch info in filebeat yaml
+
+```vim /etc/filebeat/filebeat.yml
+```
+
+<img src="fileb1.png">
