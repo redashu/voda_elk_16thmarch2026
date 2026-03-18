@@ -33,3 +33,10 @@ root@ip-172-31-7-140:/var/www/html#
 curl  -k -u elastic:Redhat@12345 "https://172.31.7.140:9200/common-log*/_search?size=100&pretty" | grep <yourname>
 
 ```
+
+### generate encrypint key 
+
+```
+/usr/share/kibana/bin/kibana-encryption-keys generate
+
+```
