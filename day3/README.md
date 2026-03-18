@@ -27,3 +27,9 @@ root@ip-172-31-7-140:/var/www/html#
 
 ```
 
+### all the logs of individual apache web-server is comming to common logstash -->elasticsearch 
+
+```
+curl  -k -u elastic:Redhat@12345 "https://172.31.7.140:9200/common-log*/_search?size=100&pretty" | grep <yourname>
+
+```
